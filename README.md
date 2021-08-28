@@ -1,0 +1,9 @@
+# SHAN NLP (experimental project)
+
+## usage
+
+```javascript
+const nlp = new ShanNLP();
+const res = nlp.tagging('ပေႃးၾူၼ်မႃးၸိူင်ႉၼႆၽူႇလၵ်ႉၵႆႉၼမ်ၼႂ်ဝႃႇ');
+console.log(res) // [ 'ၾူၼ်မႃး', 'ၽူႇလၵ်ႉ', 'ၼမ်' ]
+```
