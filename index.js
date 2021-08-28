@@ -44,9 +44,9 @@ class ShanNLP {
             if ((i === 0 && e === "_") || (i === str[str.length - 1] && e === "_")) {
                 return null;
             }
-            return e;
+            return /\s/g.test(e)? e.split(" ") : e;
         }).filter(String)
-        return arr;
+        return arr.flat();
     }
 
 }
