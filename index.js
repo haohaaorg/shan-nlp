@@ -1,4 +1,15 @@
 const words = require('./words.json');
+const express = require("express");
+const app = express();
+
+app.use(express.static('public'))
+app.use(express.json())
+
+if(typeof String.prototype.replaceAll == "undefined") {
+    String.prototype.replaceAll = function(match, replace){
+       return this.replace(new RegExp(match, 'g'), () => replace);
+    }
+}
 
 class ShanNLP {
     stemming = (str) => {
@@ -6,31 +17,32 @@ class ShanNLP {
         // pre_suf
         for (let pre_suf of prefix_suffix) {
             let reg = new RegExp(`${pre_suf}`, 'gm')
-            str = str.replace(reg, "_$1");
+            str = str.replaceAll(reg, "_$1");
         }
 
         // suf
         for (let suf of suffix) {
-            str = str.replace(suf, "_");
+            str = str.replaceAll(suf, "_");
         }
 
         // pre
         for (let pre of prefix) {
-            str = str.replace(pre, "_");
+            str = str.replaceAll(pre, "_");
         }
         return str;
     }
 
     removeStopWords = (str) => {
         const { conjunction, suffix } = words.stopwords;
-        // suf
-        for (let suf of suffix) {
-            str = str.replace(suf, "_");
-        }
-
+    
         // pre
         for (let pre of conjunction) {
-            str = str.replace(pre, "_");
+            str = str.replaceAll(pre, "_");
+        }
+
+        // suf
+        for (let suf of suffix) {
+            str = str.replaceAll(suf, "_");
         }
 
         return str;
@@ -46,11 +58,29 @@ class ShanNLP {
             }
             return /\s/g.test(e)? e.split(" ") : e;
         }).filter(String)
-        return arr.flat();
+        const data = arr.flat();
+        return data.length !== 0?data.filter(String):data;
     }
 
 }
 
-const nlp = new ShanNLP();
-const res = nlp.tagging('ပေႃးၾူၼ်မႃးၸိူင်ႉၼႆၽူႇလၵ်ႉၵႆႉၼမ်ၼႂ်ဝႃႇ');
-console.log(res) // [ 'ၾူၼ်မႃး', 'ၽူႇလၵ်ႉ', 'ၼမ်' ]
+
+app.post('/test',(req,res)=>{
+    let matches = [];
+    if(!req.body.str) return;
+
+    let str = req.body.str;
+
+    const nlp = new ShanNLP();
+    const data = nlp.tagging(str);
+
+    res.status(200).send({
+        message:'Success',
+        data,
+        matches
+    })
+})
+
+app.listen(4000,()=>{
+    console.log('Listening on port 4000, http://localhost:4000')
+})

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NLP test</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.1.0/morph/bootstrap.min.css">
+</head>
+<body>
+    <div class="center-box p-4 bg-white rounded shadow" style="margin:100px auto;max-width:500px;">
+        <form id="nlp">
+            <h4>Remove stop words and stemming</h4>
+            <div class="form-group">
+                <input type="text" class="form-control" name="str">
+            </div>
+            <div class="form-group mt-3">
+                <button class="btn btn-sm btn-primary">Test</button>
+            </div>
+            <div class="result"></div>
+        </form>
+    </div>
+
+    <script>
+        const form = document.querySelector("form#nlp");
+        form.addEventListener("submit", async(e)=>{
+            e.preventDefault();
+            const str = (new FormData(form)).get('str');
+            const res = await fetch('/test',{
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                body:JSON.stringify({str})
+            });
+            const {data} = await res.json();
+            document.querySelector(".result").innerHTML = `<pre>${JSON.stringify(data,null,4)}</pre>`;
+        })  
+    </script>
+</body>
+</html>
