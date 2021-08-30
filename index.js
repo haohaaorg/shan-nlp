@@ -1,4 +1,6 @@
 const words = require('./words.json');
+const categories = require('./w.json');
+const SSB = require('./SSB');
 const express = require("express");
 const app = express();
 
@@ -64,6 +66,11 @@ class ShanNLP {
 
 }
 
+const getType = (str)=>{
+      let data = categories.find((c)=>c.w == str);
+      return data ? data.t : '';
+}
+
 
 app.post('/test',(req,res)=>{
     let matches = [];
@@ -72,7 +79,13 @@ app.post('/test',(req,res)=>{
     let str = req.body.str;
 
     const nlp = new ShanNLP();
-    const data = nlp.tagging(str);
+    let data = nlp.tagging(str);
+
+        data = data.length > 0? data.map(e=>{
+            let ssb = new SSB()
+            let words = ssb.tokenize(e);
+            return words.map(w=>w+getType(w)).join("_")
+        }) : '';
 
     res.status(200).send({
         message:'Success',
