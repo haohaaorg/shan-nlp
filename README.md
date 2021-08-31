@@ -43,10 +43,14 @@ console.log(nlp.stopWords())
 
 ### Methods 
 
-**tagging()**
+**tagging(input)**
+input parameter - type `String`
+
 Tagging words - remove stopwords and add word's type such as (noun,verb,prep,adj,adv) 
 
-**tokenize()**
+**tokenize(input)**
+input parameter - type `String`
+
 Tokenize - splitting the sentence into word array.
 
 **stopWords()**
