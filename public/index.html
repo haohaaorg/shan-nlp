@@ -10,7 +10,7 @@
 <body>
     <div class="center-box p-4 bg-white rounded shadow" style="margin:100px auto;max-width:500px;">
         <form id="nlp">
-            <h4>Remove stop words and stemming</h4>
+            <h4>Tagging and removing stopwords</h4>
             <div class="form-group">
                 <input type="text" value="တေၸႂ်ႉတိုဝ်းလႆႈ တၢင်း font unicode ၵူၺ်းၶႃႈ ယဝ်ႉၵေႃႈ ဢၼ်ၼႆႉပဵၼ်ဢၼ်ၸၢမ်းတူၺ်းၵူၺ်းၶႃႈ" class="form-control" name="str">
             </div>
@@ -26,15 +26,15 @@
         form.addEventListener("submit", async(e)=>{
             e.preventDefault();
             const str = (new FormData(form)).get('str');
-            const res = await fetch('/test',{
+            const res = await fetch('/.netlify/functions/nlp',{
                 method:"POST",
                 headers:{
                     "Content-Type":"application/json"
                 },
                 body:JSON.stringify({str})
             });
-            const {data} = await res.json();
-            document.querySelector(".result").innerHTML = `<pre>${JSON.stringify(data,null,4)}</pre>`;
+            const {data,stop_words} = await res.json();
+            document.querySelector(".result").innerHTML = `<br>Tagging<br><pre>${JSON.stringify(data,null,4)}</pre><br>Stopwords<br><pre>${JSON.stringify(stop_words,null,4)}</pre>`;
         })  
     </script>
 </body>
