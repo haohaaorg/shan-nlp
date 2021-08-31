@@ -14,7 +14,7 @@ https://cdn.jsdelivr.net/gh/kwarm/shan-nlp@master/functions/shannlp.min.js
 
 const nlp    = new ShanNLP();
 const result = nlp.tagging('တေၸႂ်ႉတိုဝ်းလႆႈ တၢင်း font unicode ၵူၺ်းၶႃႈ ယဝ်ႉၵေႃႈ ဢၼ်ၼႆႉပဵၼ်ဢၼ်ၸၢမ်းတူၺ်းၵူၺ်းၶႃႈ');
-constole.log(result) 
+console.log(result) 
 // Result ⬇ 
 // Tagging
 // [
