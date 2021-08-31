@@ -1,3 +1,48 @@
 # SHAN NLP (experimental project)
 
-<img src="screenshot.jpg" width="400">
+### CDN Link
+```
+https://cdn.jsdelivr.net/gh/kwarm/shan-nlp@master/functions/shannlp.min.js
+```
+
+### Usage
+
+```javascript
+
+const nlp    = new ShanNLP();
+const result = nlp.tagging('တေၸႂ်ႉတိုဝ်းလႆႈ တၢင်း font unicode ၵူၺ်းၶႃႈ ယဝ်ႉၵေႃႈ ဢၼ်ၼႆႉပဵၼ်ဢၼ်ၸၢမ်းတူၺ်းၵူၺ်းၶႃႈ');
+constole.log(result) 
+// Result ⬇ 
+// Tagging
+// [
+//     "ၸႂ်ႉ(v)_တိုဝ်း(v)",
+//     "font",
+//     "unicode",
+//     "ပဵၼ်(prep)",
+//     "ၸၢမ်းတူၺ်း(v)"
+// ]
+
+// Stopwords
+// [
+//     "တေ",
+//     "တၢင်း",
+//     "ယဝ်ႉၵေႃႈ",
+//     "ဢၼ်",
+//     "ၼႆႉ",
+//     "ၵူၺ်း",
+//     "ၶႃႈ",
+//     "လႆႈ"
+// ]
+
+```
+
+### Methods 
+
+**tagging()**
+Tagging words - remove stopwords and add word's type such as (noun,verb,prep,adj,adv) 
+
+**tokenize()**
+Tokenize - splitting the sentence into word array.
+
+**stopWords()**
+Stop words - extract stop words from the sentence.
