@@ -13,8 +13,10 @@ https://cdn.jsdelivr.net/gh/kwarm/shan-nlp@master/functions/shannlp.min.js
 ```javascript
 
 const nlp    = new ShanNLP();
-const result = nlp.tagging('တေၸႂ်ႉတိုဝ်းလႆႈ တၢင်း font unicode ၵူၺ်းၶႃႈ ယဝ်ႉၵေႃႈ ဢၼ်ၼႆႉပဵၼ်ဢၼ်ၸၢမ်းတူၺ်းၵူၺ်းၶႃႈ');
-console.log(result) 
+const tagging = nlp.tagging('တေၸႂ်ႉတိုဝ်းလႆႈ တၢင်း font unicode ၵူၺ်းၶႃႈ ယဝ်ႉၵေႃႈ ဢၼ်ၼႆႉပဵၼ်ဢၼ်ၸၢမ်းတူၺ်းၵူၺ်းၶႃႈ');
+console.log(tagging) 
+console.log(nlp.stopWords())
+
 // Result ⬇ 
 // Tagging
 // [
