@@ -1,5 +1,8 @@
 # SHAN NLP (experimental project)
 
+[Demo တီႈၸၢမ်း](https://shan-nlp.netlify.app)
+
+
 ### CDN Link
 ```
 https://cdn.jsdelivr.net/gh/kwarm/shan-nlp@master/functions/shannlp.min.js
