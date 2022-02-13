@@ -5,7 +5,7 @@
 
 ### CDN Link
 ```
-https://cdn.jsdelivr.net/gh/kwarm/shan-nlp@master/functions/shannlp.min.js
+https://cdn.jsdelivr.net/gh/haohaaorg/shan-nlp@master/functions/shannlp.min.js
 ```
 
 ### Usage
