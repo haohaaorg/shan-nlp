@@ -1,4 +1,4 @@
-const ShanNLP = require('./shannlp.min')
+const ShanNLP = require('./shannlp')
 
 const response = (code,data) =>{
     return {
@@ -13,12 +13,14 @@ exports.handler = async function(event,context){
         return response(401,[]);
     }
     const nlp = new ShanNLP();
-    let data = nlp.tagging(body.str);
+    let keywords = nlp.keywords(body.str);
+    let taggings = nlp.tagging(body.str);
     let stop_words = nlp.stopWords();
 
     let res = {
         message:'Success',
-        data,
+        keywords,
+        taggings,
         stop_words
     };
 
